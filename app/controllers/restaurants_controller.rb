@@ -39,13 +39,37 @@ class RestaurantsController < ApplicationController
 
 
   private
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
 
   # STRONG PARAMS
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :rating)
   end
+  # params is
+  # {
+  #   "authenticity_token"=>"bxcW90KfIHKH4f2KuIRkjnr63Xf1dRMAFL7kK+3xKRkXkxs9FdE8stlCMidaRdYdxN/DOcojnXKCAoM7Xw35hA==",
+  #   "restaurant"=>{
+  #     "name"=>"Gula Gula",
+  #     "address"=>"Ipanema",
+  #     "admin"=>"true",
+  #     "rating"=>"5"
+  # }
 
-  def set_restaurant
-    @restaurant = Restaurant.find(params[:id])
-  end
+  # params.require(:restaurant)
+  # {
+  #   "name"=>"Gula Gula",
+  #   "address"=>"Ipanema",
+  #   "admin"=>"true",
+  #   "rating"=>"5"
+  # }
+
+  # params.require(:restaurant).permit(:name, :address, :rating)
+  # {
+  #   "name"=>"Gula Gula",
+  #   "address"=>"Ipanema",
+  #   "rating"=>"9"
+  # }
+
 end
